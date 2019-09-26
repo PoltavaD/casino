@@ -1,11 +1,9 @@
 <?php
 
-namespace app\models;
-
 /* @var $this \yii\web\View */
 /* @var $id int */
-use Yii;
-use yii\base\Model;
+//use Yii;
+//use yii\base\Model;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
@@ -19,6 +17,7 @@ use yii\helpers\Html;
         <?= $form->field($model, 'id_player') ?>
 
         <?= $form->field($model, 'rate') -> dropDownList([
+            '-' => '-',
             '1' => 'да',
             '2' => 'нет',
         ]) ?>

@@ -3,7 +3,7 @@
 $this->title = 'Jack Pot';
 
 ?>
-
+<body style="background-image: url('/img/bg_win_clean.png')">
 <div class="SZ">
         <span>
             <? echo $SZ ?>
@@ -15,3 +15,4 @@ $this->title = 'Jack Pot';
         <? echo $JP ?>
     </span>
 </div>
+</body>

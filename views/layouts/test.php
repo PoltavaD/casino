@@ -2,13 +2,14 @@
 use app\assets\AppAsset;
 use yii\helpers\Html;
 
+
 AppAsset::register($this);
 
 ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-<meta http-equiv="refresh" content="10">
+<meta http-equiv="refresh" content="5">
 
 <title><?= Html::encode($this->title) ?></title>
 
@@ -16,7 +17,7 @@ AppAsset::register($this);
 
 <style>
     body {
-        background-image: url('/img/JP.png');
+        /*background-image: url('/img/JP.png');*/
         max-width: 1920px;
         max-height: 1080px;
         margin: 0;

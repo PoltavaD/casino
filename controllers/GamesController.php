@@ -2,15 +2,14 @@
 
 namespace app\controllers;
 
-use Yii;
-use yii\web\Controller;
+use app\controllers\base\SecurityController;
 use app\models\InputForm;
 use app\models\Usersgames;
 use app\models\JackpotForm;
 use app\models\Jackpot;
-use yii\helpers\Url;
+//use yii\helpers\Url;
 
-class GamesController extends Controller
+class GamesController extends SecurityController
 {
     public function summaZala()
     {
@@ -58,8 +57,9 @@ class GamesController extends Controller
         } elseif ($jackpot->rate == 1) {
             $jackpot = 500;
         } elseif ($jackpot->rate == 2) {
+//            $jackpot = $jackpot->jackpot + ($jackpot->jackpot / 2);
             $jackpot = 500 + ($jackpot->jackpot / 2);
-            $jackpot = round($jackpot, -2);
+            $jackpot = round($jackpot, -1);
         }
         return $jackpot;
     }
@@ -92,12 +92,54 @@ class GamesController extends Controller
 
     }
 
+    public function Winner()
+    {
+        $id = Usersgames::find()->max('id_game');
+        $game = Usersgames::find()->where('id_game=:id_game', [':id_game' => $id])->one();
+        if (!$game) {
+            $winner = 00000;
+        } else {
+            $winner = $game->id_player;
+        }
+
+        return $winner;
+    }
+
+    public function Win()
+    {
+        $id = Jackpot::find()->max('id');
+        $jackpot = Jackpot::find()->where('id=:id', [':id' => $id])->one();
+        if(!$jackpot) {
+            $win = 000;
+        }
+        if ($jackpot->id_player != $this->Winner()) {
+            $win = 000;
+        }
+        elseif ($jackpot->rate == 1){
+            $win = $jackpot->jackpot;
+        } elseif ($jackpot->rate == 2) {
+            $win = $jackpot->jackpot / 2;
+        }
+
+        if (!empty($win)) {
+            return $win;
+        }
+    }
+
     public function actionShow()
     {
-        $this->layout = 'test';
+        $this->layout = 'mylayout';
         $JP = $this->Jackpot();
         $SZ = $this->summaZala();
-        return $this->render('show', ['JP' => $JP, 'SZ' => $SZ]);
+        $Id = $this->Winner();
+        $win = $this->Win();
+
+
+        if ($SZ == 0) {
+            return $this->render('winner', ['win' => $win, 'Id' => $Id]);
+        } else {
+            return $this->render('showSZ', ['JP' => $JP, 'SZ' => $SZ]);
+        }
     }
 
 }

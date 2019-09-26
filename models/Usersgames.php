@@ -34,7 +34,7 @@ class Usersgames extends \yii\db\ActiveRecord
     {
         return [
             [['id_pitBoss', 'id_player', 'points'], 'required'],
-            [['id_pitBoss', 'id_player', 'points', 'summa_zala', 'jackpot'], 'integer'],
+            [['id_pitBoss', 'id_player', 'points', 'summa_zala',], 'integer'],
             [['date'], 'safe'],
             [['id_pitBoss'], 'exist', 'skipOnError' => true, 'targetClass' => PitBosses::className(), 'targetAttribute' => ['id_pitBoss' => 'id']],
         ];
@@ -44,19 +44,6 @@ class Usersgames extends \yii\db\ActiveRecord
      * {@inheritdoc}
      */
 
-//    public function summaZala()
-//    {
-//        $id = Usersgames::find()->max('id_game');
-//        $game = Usersgames::find()->where('id_game=:id_game', [':id_game' => $id])->one();
-//        if(!$game) {
-//            $summa_zala = 0;
-//        } else {
-//            $summa_zala = $game->summa_zala;
-//        }
-//        return $summa_zala;
-//
-//    }
-
     public function attributeLabels()
     {
         return [
@@ -65,7 +52,6 @@ class Usersgames extends \yii\db\ActiveRecord
             'id_player' => 'Id Player',
             'points' => 'Points',
             'summa_zala' => 'Summa Zala',
-            'jackpot' => 'Jackpot',
             'date' => 'Date',
         ];
     }

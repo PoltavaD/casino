@@ -14,6 +14,17 @@ class JackpotForm extends Model
         return [
             [['id_player','rate',], 'required'],
             [['id_player'], 'string', 'length' => 5],
+            [['rate'], 'number'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'id_player' => 'Id Player',
+            'rate' => 'Выиграл JP?',
+            'jackpot' => 'Jackpot',
         ];
     }
 }

@@ -1,9 +1,5 @@
 <?php
 
-namespace app\models;
-
-use Yii;
-use yii\base\Model;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
@@ -17,17 +13,12 @@ use yii\helpers\Html;
         <?= $form->field($model, 'id_player') ?>
 
         <?= $form->field($model, 'points') -> dropDownList([
-            '3' => 'Flush',
-            '4' => 'Full House',
+            '1' => 'Str, AR, BJ om',
+            '2' => 'Flush',
+            '3' => 'Full House',
             '5' => '4 of a King',
             '25' => 'Straight Flush',
             '50' => 'Royal Flush',
-            '1' => 'BJ om',
-//            '1' => '678 pm',
-//            '1' => '777 pm',
-//            '1' => '678 om',
-//            '1' => '777 om',
-            '2' => 'zero',
         ]) ?>
 
 
@@ -39,4 +30,9 @@ use yii\helpers\Html;
         <?php ActiveForm::end(); ?>
 
     </div>
+</div>
+<br>
+<br>
+<div>
+    <a class="btn btn-warning" href="/games/show/" role="button" target="_blank">JackPot</a>
 </div>
